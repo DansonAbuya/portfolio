@@ -12,3 +12,5 @@ node_modules/
 # Generated favicon (copied from public/logo.png at build time)
 app/icon.png
 app/apple-icon.png
+public/favicon.ico
+public/favicon.png
