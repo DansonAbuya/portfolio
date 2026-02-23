@@ -157,7 +157,13 @@ export default function Home() {
             {[
               {
                 title: 'BiasharaHub',
-                description: 'Built with React and Next.js on the frontend, Java and PostgreSQL on the backend, plus M-Pesa for payments and WhatsApp integration for ordering and business management.',
+                description: 'Most SMEs  tend to sell through social media for example, WhatsApp, but operations remain manual — responding to customers, verifying payments, managing stock, and organizing delivery takes time and limits growth.
+
+BiasharaHub transforms WhatsApp into a fully automated commerce platform.
+
+Orders, payments, inventory, and delivery are handled automatically in one system — allowing businesses to operate smarter, serve customers faster, and grow without extra effort.
+
+If you run or support a business, BiasharaHub helps you scale with confidence..',
                 tech: ['React', 'Next.js', 'Java', 'PostgreSQL', 'M-Pesa', 'WhatsApp'],
                 link: 'https://biasharahub-app.sysnovatechnologies.com'
               },
@@ -376,7 +382,7 @@ export default function Home() {
           </div>
 
           <p className="text-muted-foreground text-sm">
-            © 2024 Danson Abuya | Sysnova Technologies. All rights reserved.
+            © 2026 Danson Abuya | Sysnova Technologies. All rights reserved.
           </p>
         </div>
       </section>
