@@ -1,14 +1,18 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const geist = Geist({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export const metadata: Metadata = {
-  title: 'Danson Abuya | Full Stack Developer | Sysnova Technologies',
-  description: 'Full Stack Developer portfolio showcasing enterprise applications and innovative solutions built with Java, React, and Next.js at Sysnova Technologies.',
+  title: 'Danson Omondi Abuya | Full Stack Developer | Sysnova Technologies',
+  description: 'Full Stack Developer with 4+ years experience. Java Spring Boot, Node.js, React, Next.js, React Native. Technical Lead at Zimasa Health. Portfolio of enterprise applications and innovative solutions.',
   generator: 'v0.app',
   icons: {
     icon: '/logo.png',
@@ -23,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         {children}
         <Analytics />
       </body>
