@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, ChevronDown } from 'lucide-react';
 
 export default function Home() {
@@ -14,218 +14,228 @@ export default function Home() {
     setIsMenuOpen(false);
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div className="bg-background text-foreground min-h-screen">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-50 border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Sysnova Technologies Logo" className="h-10 w-10 object-contain" />
-              <div className="flex flex-col">
-                <div className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Danson Abuya
-                </div>
-                <div className="text-xs text-muted-foreground">Sysnova Technologies</div>
+    <React.Fragment>
+      <div className="bg-background text-foreground min-h-screen flex flex-col">
+      {/* Fixed Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
+        <nav className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8" aria-label="Main">
+          <div className="flex justify-between items-center min-h-14 sm:h-16">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <img src="/logo.png" alt="Sysnova Technologies" className="h-8 w-8 sm:h-9 sm:w-9 object-contain rounded shrink-0" />
+              <div className="flex flex-col min-w-0">
+                <span className="text-sm sm:text-base font-semibold text-foreground tracking-tight truncate">Danson Omondi Abuya</span>
+                <span className="text-xs text-muted-foreground hidden sm:block">Full Stack Developer</span>
               </div>
             </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
-              {['home', 'about', 'projects', 'skills', 'experience', 'contact'].map((item) => (
+            <div className="hidden md:flex items-center gap-1 shrink-0">
+              {['home', 'about', 'projects', 'skills', 'experience', 'education', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-colors ${
+                  className={`capitalize px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === item
-                      ? 'text-primary font-semibold'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'text-primary bg-primary/10'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                 >
                   {item}
                 </button>
               ))}
             </div>
-
-            {/* Mobile Menu Button */}
             <button
-              className="md:hidden"
+              className="md:hidden min-h-[44px] min-w-[44px] p-2 rounded-md text-muted-foreground hover:bg-muted/50 hover:text-foreground touch-manipulation flex items-center justify-center"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
-
-          {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden pb-4 flex flex-col gap-2">
-              {['home', 'about', 'projects', 'skills', 'experience', 'contact'].map((item) => (
+            <div className="md:hidden py-3 border-t border-border/60 flex flex-col gap-0.5">
+              {['home', 'about', 'projects', 'skills', 'experience', 'education', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="capitalize text-left px-2 py-2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="capitalize text-left px-3 min-h-[44px] py-2.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors text-sm touch-manipulation flex items-center"
                 >
                   {item}
                 </button>
               ))}
             </div>
           )}
-        </div>
-      </nav>
+        </nav>
+      </header>
 
+      {/* Scrollable main content */}
+      <main className="flex-1 overflow-y-auto pt-12 sm:pt-14 pb-16" role="main">
       {/* Hero Section */}
-      <section id="home" className="pt-24 pb-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent p-1 mb-5">
-              <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-3xl font-bold text-primary">
-                DA
+      <section id="home" className="pt-2 pb-3 sm:pb-4 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+            <div className="flex-1 text-center lg:text-left order-2 lg:order-1 min-w-0">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-1.5 sm:mb-2 break-words">
+                Danson Omondi Abuya
+              </h1>
+              <p className="text-base sm:text-lg lg:text-xl text-primary font-semibold mb-1.5 sm:mb-2">Full Stack Developer</p>
+              <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto lg:mx-0 mb-2 sm:mb-3 leading-relaxed">
+                Over 4 years delivering end-to-end enterprise applications. Strong in Java Spring Boot, Node.js, React, Next.js, and React Native—building API-driven, secure, and high-performance solutions.
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-2 lg:mb-0">
+                <button
+                  onClick={() => scrollToSection('projects')}
+                  className="min-h-[44px] px-5 py-2.5 sm:px-6 bg-primary text-primary-foreground rounded-lg font-semibold text-sm shadow-lg shadow-primary/25 hover:opacity-95 transition-opacity touch-manipulation"
+                >
+                  View My Work
+                </button>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="min-h-[44px] px-5 py-2.5 sm:px-6 rounded-lg font-semibold text-sm bg-muted/50 text-foreground hover:bg-muted transition-colors touch-manipulation"
+                >
+                  Get In Touch
+                </button>
               </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
-              Full Stack Developer & Problem Solver
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mb-5">
-              Crafting elegant, scalable solutions with modern technologies. Passionate about building products that make a difference and writing clean, maintainable code.
-            </p>
-            <div className="flex gap-3 mb-6">
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm"
-              >
-                View My Work
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="px-6 py-2.5 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition-colors text-sm"
-              >
-                Get In Touch
-              </button>
+            <div className="flex-1 flex flex-col items-center lg:items-end order-1 lg:order-2 mb-3 sm:mb-4 lg:mb-0 min-w-0">
+              <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-3xl sm:text-5xl font-bold text-primary ring-1 ring-primary/20 shrink-0">
+                DA
+              </div>
+              <div className="mt-2 w-full max-w-[280px] sm:max-w-xs rounded-2xl bg-card/80 p-3 sm:p-4 shadow-sm border border-border/40 text-center lg:text-right">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Quick facts</p>
+                <p className="text-sm text-foreground font-medium">Nairobi, Kenya</p>
+                <p className="text-sm text-muted-foreground">4+ years experience</p>
+                <p className="text-sm text-muted-foreground">Technical Lead · Zimasa Health</p>
+              </div>
             </div>
-            <ChevronDown
-              className="animate-bounce text-primary mt-4"
-              size={28}
-            />
+          </div>
+          <div className="flex justify-center mt-2">
+            <ChevronDown className="text-primary/70 animate-bounce" size={20} aria-hidden />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-10 px-4 sm:px-6 lg:px-8 bg-card/50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">About Me</h2>
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                Full Stack Developer with 3+ years of experience delivering end-to-end enterprise applications. I specialize in building API-driven, secure, and high-performance solutions using Java Spring Boot, Node.js, React, Next.js, and React Native.
+      <section id="about" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8 bg-muted/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5 text-center">About Me</h2>
+          <p className="text-muted-foreground text-center text-xs sm:text-sm mb-2 sm:mb-3">Background and expertise</p>
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4 items-start">
+            <div className="space-y-2 min-w-0">
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Full Stack Developer with over 4 years of experience delivering end-to-end enterprise applications. Strong expertise in Java Spring Boot, Node.js, React, Next.js, and React Native—building API-driven, secure, and high-performance solutions.
               </p>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                Skilled in Agile methodologies, DevOps pipelines, SIT/UAT testing, and enterprise system support. Proven ability to lead teams, conduct code reviews, and deliver business-impacting solutions.
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Skilled in Agile methodologies, DevOps pipelines, SIT/UAT testing, and enterprise system support. Proven ability to lead teams, conduct code reviews, and deliver business-impacting solutions. Fluent in English and Kiswahili.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm committed to continuous learning, best practices in security and performance, and mentoring junior developers. When I'm not coding, you'll find me exploring emerging technologies and contributing to the tech community.
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                I focus on security best practices, code quality, and end-to-end project ownership—from requirements and design through deployment and production support.
               </p>
             </div>
-            <div className="space-y-4">
-              <div className="bg-background border border-border p-4 rounded-lg">
-                <h3 className="font-semibold mb-2 text-primary">Expertise</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex gap-2">
-                    <span className="text-accent">▸</span>
-                    <span>Frontend: React, Next.js, TypeScript, Tailwind CSS, JavaScript, Vite</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-accent">▸</span>
-                    <span>Backend: Node.js, Express, MySQL, Java</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-accent">▸</span>
-                    <span>DevOps: Docker, CI/CD, AWS, Vercel</span>
-                  </li>
-                </ul>
-              </div>
+            <div className="rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 min-w-0">
+              <h3 className="font-semibold text-foreground mb-2 text-sm sm:text-base">Expertise</h3>
+              <ul className="space-y-1.5 text-sm text-muted-foreground">
+                <li><span className="text-foreground font-medium">Frontend:</span> React, Next.js, React Native, Angular, JavaScript, HTML5, CSS3, Bootstrap, Tailwind CSS, Ajax</li>
+                <li><span className="text-foreground font-medium">Backend:</span> Java Spring Boot, Node.js, ExpressJS, PHP, RESTful API design & integration</li>
+                <li><span className="text-foreground font-medium">Databases:</span> SQL Server, MySQL, PostgreSQL, database design</li>
+                <li><span className="text-foreground font-medium">DevOps:</span> Git, GitHub Actions, Jenkins, Docker, Agile workflows</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">Featured Projects</h2>
-          <div className="grid md:grid-cols-2 gap-5">
+      <section id="projects" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5 text-center">Featured Projects</h2>
+          <p className="text-muted-foreground text-center text-xs sm:text-sm mb-2 sm:mb-3">Selected work and side projects</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
             {[
               {
                 title: 'BiasharaHub',
-                description: 'Built with React and Next.js on the frontend, Java and PostgreSQL on the backend, plus M-Pesa for payments and WhatsApp integration for ordering and business management.',
-                tech: ['React', 'Next.js', 'Java', 'PostgreSQL', 'M-Pesa', 'WhatsApp'],
+                description: `Most SMEs tend to sell through social media (e.g. WhatsApp), but operations remain manual. BiasharaHub transforms WhatsApp into a fully automated commerce platform: orders, payments, inventory, and delivery are handled in one system—so businesses can operate smarter, serve customers faster, and scale with confidence.`,
+                tech: ['React', 'Next.js', 'Java', 'Java Spring Boot', 'PostgreSQL', 'M-Pesa', 'WhatsApp'],
                 link: 'https://biasharahub-app.sysnovatechnologies.com'
               },
               {
                 title: 'RentalHub',
                 description: 'Property rental management system with booking management, tenant coordination, payment tracking, maintenance scheduling, M-Pesa integration, and WhatsApp notifications.',
-                tech: ['Next.js', 'Java', 'PostgreSQL', 'M-Pesa', 'WhatsApp'],
+                tech: ['Next.js', 'Java', 'Java Spring Boot', 'PostgreSQL', 'M-Pesa', 'WhatsApp'],
                 link: 'https://rental-hub-frontend.vercel.app/'
               },
               {
                 title: 'Zimasa Payer Solution',
                 description: 'Comprehensive insurance solution system enabling seamless interactions between Insurance/TPA, Providers, and Employees. Features claims processing, policy management, real-time transaction monitoring, and integrated financial reporting for efficient healthcare ecosystem management.',
-                tech: ['React', 'Java', 'MySQL'],
+                tech: ['React', 'Java', 'Java Spring Boot', 'MySQL'],
                 link: '#',
                 isPrivate: true
               },
               {
                 title: 'Zimasa Engagement Solution',
                 description: 'Employee wellness engagement platform promoting health and well-being. Enables individuals and employees to access wellness resources, participate in health challenges, track wellness activities, and receive personalized recommendations for improved work-life wellness.',
-                tech: ['Next.js', 'MySQL', 'Tailwind CSS', 'WebSocket'],
+                tech: ['Next.js', 'Java', 'Java Spring Boot', 'MySQL', 'Tailwind CSS', 'WebSocket'],
                 link: '#',
                 isPrivate: true
               },
               {
                 title: 'Zimasa Member App',
                 description: 'Mobile-first member management application with profile management, membership tracking, benefits access, and personalized member experiences.',
-                tech: ['React Native', 'Vite', 'JavaScript', 'Java', 'MySQL'],
+                tech: ['React Native', 'Vite', 'JavaScript', 'Java', 'Java Spring Boot', 'MySQL'],
                 link: '#',
                 isPrivate: true
               },
               {
-                title: 'Garbage Collection Management System',
-                description: 'Comprehensive waste management platform enabling efficient scheduling, route optimization, real-time tracking, and reporting for municipal and private collection services.',
-                tech: ['React', 'Node.js', 'PostgreSQL', 'Google Maps API', 'Real-time Tracking'],
-                link: '#'
+                title: 'TakaTrack',
+                description: 'Waste collection and management system enabling efficient scheduling, route optimization, real-time tracking, and reporting for municipal and private collection services.',
+                tech: ['React', 'Node.js', 'Java', 'Java Spring Boot', 'PostgreSQL', 'Google Maps API', 'FCM', 'WhatsApp', 'SMS'],
+                link: 'https://takatrack.sysnovatechnologies.com/'
+              },
+              {
+                title: 'Mkulima Pro',
+                description: 'Smart farming platform connecting smallholder and commercial farmers with agricultural advisory, financing, market access, and logistics solutions—all in one place.',
+                tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Java', 'Java Spring Boot', 'AI'],
+                link: 'https://mkulima-pro.vercel.app/'
+              },
+              {
+                title: 'LedgerHive',
+                description: 'Smart Credit & Collections Platform for SMEs. Enterprise-grade collections management with credit scoring, payment tracking, and streamlined recovery workflows.',
+                tech: ['React', 'Next.js', 'TypeScript', 'PostgreSQL', 'Java', 'Java Spring Boot', 'AI', 'WhatsApp', 'SMS'],
+                link: 'https://ledgerhive.sysnovatechnologies.com/'
               }
             ].map((project, idx) => (
               <div
                 key={idx}
-                className="group bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                className="group rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-200 min-w-0"
               >
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1 sm:mb-1.5">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                <p className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 leading-relaxed line-clamp-3 sm:line-clamp-4">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full"
+                      className="text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 bg-muted text-muted-foreground rounded-md"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
                 {project.isPrivate ? (
-                  <div className="inline-flex items-center gap-2 text-muted-foreground opacity-50 cursor-not-allowed">
-                    <span className="text-sm">Proprietary Project</span>
-                  </div>
+                  <span className="text-xs text-muted-foreground">Proprietary</span>
                 ) : (
                   <a
                     href={project.link}
-                    className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                   >
                     View Project
-                    <ExternalLink size={16} />
+                    <ExternalLink size={14} />
                   </a>
                 )}
               </div>
@@ -235,39 +245,37 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-10 px-4 sm:px-6 lg:px-8 bg-card/50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">Skills & Expertise</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section id="skills" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8 bg-muted/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5 text-center">Skills & Expertise</h2>
+          <p className="text-muted-foreground text-center text-xs sm:text-sm mb-2 sm:mb-3">Technologies and practices</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
             {[
               {
                 category: 'Frontend',
-                skills: ['React', 'React Native', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Vite']
+                skills: ['React', 'Next.js', 'React Native', 'Angular', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'Ajax', 'Vite']
               },
               {
                 category: 'Backend',
-                skills: ['Java', 'Java Spring Boot', 'Node.js', 'Express', 'MySQL', 'PostgreSQL', 'RESTful APIs']
+                skills: ['Java', 'Java Spring Boot', 'Node.js', 'ExpressJS', 'PHP', 'RESTful API design', 'MySQL', 'PostgreSQL', 'SQL Server']
               },
               {
                 category: 'Tools & DevOps',
-                skills: ['Docker', 'Git', 'GitHub Actions', 'Jenkins', 'AWS', 'Vercel', 'SIT/UAT Testing']
+                skills: ['Git', 'GitHub Actions', 'Jenkins', 'Docker', 'Agile workflows', 'AWS', 'Vercel', 'SIT/UAT Testing']
               },
               {
-                category: 'Soft Skills',
-                skills: ['Problem Solving', 'Team Leadership', 'Communication', 'Mentoring']
+                category: 'Other',
+                skills: ['Code reviews', 'Security best practices', 'System deployment', 'End-to-end project ownership', 'Team leadership', 'Mentoring']
               }
             ].map((skillGroup, idx) => (
-              <div key={idx} className="bg-background border border-border rounded-lg p-4">
-                <h3 className="font-semibold mb-3 text-primary">
+              <div key={idx} className="rounded-2xl bg-card/90 p-3 shadow-sm border border-border/40 min-w-0">
+                <h3 className="font-semibold text-foreground mb-1.5 sm:mb-2 text-[10px] sm:text-xs uppercase tracking-wide text-muted-foreground">
                   {skillGroup.category}
                 </h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
                   {skillGroup.skills.map((skill, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <div className="w-2 h-2 bg-accent rounded-full" />
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
                       {skill}
                     </li>
                   ))}
@@ -279,16 +287,17 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">Work Experience</h2>
-          <div className="space-y-4">
+      <section id="experience" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5 text-center">Work Experience</h2>
+          <p className="text-muted-foreground text-center text-xs sm:text-sm mb-2 sm:mb-3">Roles and responsibilities</p>
+          <div className="space-y-2">
             {[
               {
                 title: 'Technical Lead & Full Stack Developer',
                 company: 'Zimasa Health',
                 period: 'Current',
-                description: 'Delivered end-to-end solutions for three applications using Java Spring Boot (backend), React & Next.js (web), and React Native (mobile). Built API-driven architectures ensuring fast, reliable, and secure communication. Led SIT/UAT testing, deployment, and production support for enterprise-grade applications.'
+                description: 'Delivering end-to-end solutions for three applications: Zimasa Payer Solution (client-facing, in use by a client and three networks), Zimasa Member App (companion for client networks), and Zimasa Engagement Platform (in demo for providers, payers, and consumers). Tech stack: Java Spring Boot (backend), React & Next.js (web), React Native (mobile). Built API-driven architectures for fast, reliable, secure communication. Conduct peer code reviews; lead SIT/UAT testing, deployment, and production support. Collaborate with cross-functional teams on requirements, design, and implementation aligned with business goals.'
               },
               {
                 title: 'Software Engineer',
@@ -311,16 +320,14 @@ export default function Home() {
             ].map((job, idx) => (
               <div
                 key={idx}
-                className="bg-card border-l-4 border-primary pl-4 py-3 hover:bg-card/80 transition-colors"
+                className="rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 border-l-4 border-l-primary min-w-0"
               >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1">
-                  <h3 className="text-lg font-semibold">{job.title}</h3>
-                  <span className="text-sm text-muted-foreground mt-1 md:mt-0">
-                    {job.period}
-                  </span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5 mb-0.5">
+                  <h3 className="text-sm sm:text-base font-semibold text-foreground">{job.title}</h3>
+                  <span className="text-xs text-muted-foreground shrink-0">{job.period}</span>
                 </div>
-                <p className="text-primary font-medium mb-2 text-sm">{job.company}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-primary font-medium text-xs sm:text-sm mb-1">{job.company}</p>
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                   {job.description}
                 </p>
               </div>
@@ -329,57 +336,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-10 px-4 sm:px-6 lg:px-8 bg-card/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            I'm always interested in hearing about new opportunities and exciting projects. Feel free to reach out!
-          </p>
+      {/* Education & Certifications Section */}
+      <section id="education" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8 bg-muted/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5 text-center">Education & Certifications</h2>
+          <p className="text-muted-foreground text-center text-xs sm:text-sm mb-2 sm:mb-3">Academic and professional development</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+            <div className="rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 min-w-0">
+              <h3 className="font-semibold text-foreground mb-0.5 text-xs sm:text-base">Bachelor of Science in Computer Science</h3>
+              <p className="text-muted-foreground text-xs sm:text-sm">Chuka University · 2018 – 2022 · Second Class Honours (Upper Division)</p>
+            </div>
+            <div className="rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 min-w-0">
+              <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-base">Professional Certifications & Training</h3>
+              <ul className="text-muted-foreground text-xs sm:text-sm space-y-1">
+                <li>CCNA 1, 2, 3 · Google Project Management · Google IT Support</li>
+                <li>AWS re/Start · Cisco DevNet · Cisco CyberOps · ALX Cloud Computing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-5">
+      {/* Contact Section */}
+      <section id="contact" className="py-3 sm:py-4 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mx-auto text-center min-w-0">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-0.5">Get in touch</h2>
+          <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3">
+            Nairobi, Kenya. Open to new opportunities and collaborations.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             <a
               href="mailto:dansonabuya@gmail.com"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-xl font-medium text-sm shadow-lg shadow-primary/20 hover:opacity-95 transition-opacity touch-manipulation"
             >
-              <Mail size={20} />
-              Send Email
+              <Mail size={18} />
+              Email
             </a>
             <a
               href="tel:+254790100189"
-              className="inline-flex items-center gap-2 px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-medium text-sm bg-muted hover:bg-muted/80 transition-colors touch-manipulation"
             >
-              <span>📞</span>
-              Call: 0790100189
+              Call 0790 100 189
             </a>
             <a
               href="https://linkedin.com/in/danson-abuya-b076a023a"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-medium text-sm bg-muted hover:bg-muted/80 transition-colors touch-manipulation"
             >
-              <Linkedin size={20} />
+              <Linkedin size={18} />
               LinkedIn
             </a>
-          </div>
-
-          <div className="flex justify-center gap-6 mb-6">
-            <a href="https://github.com/DansonAbuya" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-              <Github size={22} />
-            </a>
-            <a href="https://linkedin.com/in/danson-abuya-b076a023a" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-              <Linkedin size={22} />
-            </a>
-            <a href="mailto:dansonabuya@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-              <Mail size={22} />
+            <a
+              href="https://github.com/DansonAbuya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-medium text-sm bg-muted hover:bg-muted/80 transition-colors touch-manipulation"
+            >
+              <Github size={18} />
+              GitHub
             </a>
           </div>
-
-          <p className="text-muted-foreground text-sm">
-            © 2024 Danson Abuya | Sysnova Technologies. All rights reserved.
-          </p>
+          </div>
         </div>
       </section>
-    </div>
+      </main>
+
+      {/* Fixed Footer */}
+      <footer className="fixed bottom-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-t border-border/50 py-1.5 sm:py-2">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2 min-h-0">
+          <p className="text-muted-foreground text-xs sm:text-sm order-2 sm:order-1 text-center sm:text-left break-words max-w-full">
+            © {currentYear} Danson Omondi Abuya · Sysnova Technologies
+          </p>
+          <div className="flex items-center gap-3 sm:gap-4 order-1 sm:order-2">
+            <a href="https://github.com/DansonAbuya" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-muted-foreground hover:text-primary transition-colors touch-manipulation" aria-label="GitHub">
+              <Github size={20} />
+            </a>
+            <a href="https://linkedin.com/in/danson-abuya-b076a023a" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-muted-foreground hover:text-primary transition-colors touch-manipulation" aria-label="LinkedIn">
+              <Linkedin size={20} />
+            </a>
+            <a href="mailto:dansonabuya@gmail.com" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-muted-foreground hover:text-primary transition-colors touch-manipulation" aria-label="Email">
+              <Mail size={20} />
+            </a>
+          </div>
+        </div>
+      </footer>
+      </div>
+    </React.Fragment>
   );
 }
