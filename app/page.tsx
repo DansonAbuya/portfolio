@@ -136,10 +136,10 @@ export default function Home() {
             <div className="rounded-2xl bg-card/90 p-3 sm:p-4 shadow-sm border border-border/40 min-w-0">
               <h3 className="font-semibold text-foreground mb-2 text-sm sm:text-base">Expertise</h3>
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                <li><span className="text-foreground font-medium">Frontend:</span> React, Next.js, React Native, Angular, JavaScript, HTML5, CSS3, Bootstrap, Tailwind CSS, Ajax</li>
-                <li><span className="text-foreground font-medium">Backend:</span> Java Spring Boot, Node.js, ExpressJS, PHP, RESTful API design & integration</li>
+                <li><span className="text-foreground font-medium">Frontend:</span> React, Next.js, React Native, Angular, Flutter, JavaScript, jQuery, HTML5, CSS3, Bootstrap, Tailwind CSS, Ajax, Capacitor, Jetpack Compose</li>
+                <li><span className="text-foreground font-medium">Backend:</span> Java Spring Boot, Node.js, ExpressJS, PHP, Firebase, RESTful API design & integration</li>
                 <li><span className="text-foreground font-medium">Databases:</span> SQL Server, MySQL, PostgreSQL, database design</li>
-                <li><span className="text-foreground font-medium">DevOps:</span> Git, GitHub Actions, Jenkins, Docker, Agile workflows</li>
+                <li><span className="text-foreground font-medium">DevOps:</span> Git, GitHub Actions, Jenkins, Docker, Agile workflows, Google Analytics</li>
               </ul>
             </div>
           </div>
@@ -253,15 +253,15 @@ export default function Home() {
             {[
               {
                 category: 'Frontend',
-                skills: ['React', 'Next.js', 'React Native', 'Angular', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'Ajax', 'Vite']
+                skills: ['React', 'Next.js', 'React Native', 'Angular', 'Flutter', 'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'Ajax', 'Vite', 'Capacitor', 'Jetpack Compose']
               },
               {
                 category: 'Backend',
-                skills: ['Java', 'Java Spring Boot', 'Node.js', 'ExpressJS', 'PHP', 'RESTful API design', 'MySQL', 'PostgreSQL', 'SQL Server']
+                skills: ['Java', 'Java Spring Boot', 'Node.js', 'ExpressJS', 'PHP', 'Firebase', 'RESTful API design', 'MySQL', 'PostgreSQL', 'SQL Server']
               },
               {
                 category: 'Tools & DevOps',
-                skills: ['Git', 'GitHub Actions', 'Jenkins', 'Docker', 'Agile workflows', 'AWS', 'Vercel', 'SIT/UAT Testing']
+                skills: ['Git', 'GitHub Actions', 'Jenkins', 'Docker', 'Agile workflows', 'AWS', 'Vercel', 'Google Analytics', 'SIT/UAT Testing']
               },
               {
                 category: 'Other',
